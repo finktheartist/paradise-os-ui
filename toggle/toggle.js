@@ -1995,7 +1995,9 @@ class VpWinToggle extends Base {
     }
     .wrap[data-mode="locked"] { cursor: not-allowed; }
     .wrap[data-mode="busy"] { cursor: progress; }
-    .wrap:focus-visible { outline: 2px dotted #2C213D; outline-offset: 6px; }
+    .wrap:focus { outline: none; }
+    /* keyboard focus only: a press focuses it too, and the ring should not circle it under the pointer */
+    .wrap:focus-visible:not([data-pointer]) { outline: 2px dotted #2C213D; outline-offset: 6px; }
     canvas {
       position: absolute; left: -34px; top: -36px;
       width: 312px; height: 158px; pointer-events: none;
@@ -2028,7 +2030,9 @@ class VpWinToggle extends Base {
       this.dirty = true; start();
     };
 
+    this.el.addEventListener('keydown', () => { delete this.el.dataset.pointer; }, true);
     this.el.addEventListener('pointerdown', (e) => {
+      this.el.dataset.pointer = '';
       this.el.focus();
       if (this._mode === 'locked') { triggerLockedFeedback(); return; }
       if (this._mode === 'busy') { this.shakeSpr.v += 6; SND?.keyTap(); start(); return; }

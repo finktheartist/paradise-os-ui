@@ -2011,7 +2011,9 @@ class VpVaporEq extends Base {
       cursor: crosshair; user-select: none; touch-action: none;
       -webkit-tap-highlight-color: transparent;
     }
-    .deck:focus-visible { outline: 2px solid #3CEBE2; outline-offset: 6px; border-radius: 14px; }
+    .deck:focus { outline: none; }
+    /* keyboard focus only: a press focuses it too, and the ring should not circle it under the pointer */
+    .deck:focus-visible:not([data-pointer]) { outline: 2px solid #3CEBE2; outline-offset: 6px; border-radius: 14px; }
     canvas {
       position: absolute; left: -24px; top: -22px;
       width: 492px; height: 280px; pointer-events: none;
@@ -2061,7 +2063,9 @@ class VpVaporEq extends Base {
       this._lastPaintedBand = bestIdx;
     };
 
+    this.el.addEventListener('keydown', () => { delete this.el.dataset.pointer; }, true);
     this.el.addEventListener('pointerdown', (e) => {
+      this.el.dataset.pointer = '';
       this.el.focus();
       this.el.setPointerCapture(e.pointerId);
       this.dragging = true;

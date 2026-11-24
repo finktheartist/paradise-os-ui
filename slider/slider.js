@@ -1998,7 +1998,9 @@ class VpPoolSlider extends Base {
       -webkit-tap-highlight-color: transparent;
     }
     .track:active { cursor: grabbing; }
-    .track:focus-visible { outline: 2px solid #3CEBE2; outline-offset: 8px; border-radius: 999px; }
+    .track:focus { outline: none; }
+    /* keyboard focus only: a press focuses it too, and the ring should not circle it under the pointer */
+    .track:focus-visible:not([data-pointer]) { outline: 2px solid #3CEBE2; outline-offset: 8px; border-radius: 999px; }
     canvas {
       position: absolute; left: -24px; top: -28px;
       width: calc(100% + 48px); height: calc(100% + 52px);
@@ -2046,9 +2048,11 @@ class VpPoolSlider extends Base {
       this.setNorm(clamp((clientX - x0) / Math.max(10, x1 - x0)), jump);
     };
 
+    this.track.addEventListener('keydown', () => { delete this.track.dataset.pointer; }, true);
     this.track.addEventListener('pointerenter', () => { this.hover.to = 1; start(); });
     this.track.addEventListener('pointerleave', () => { this.hover.to = 0; start(); });
     this.track.addEventListener('pointerdown', (e) => {
+      this.track.dataset.pointer = '';
       this.track.focus();
       this.track.setPointerCapture(e.pointerId);
       this.dragging = true;
