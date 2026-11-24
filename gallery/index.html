@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Paradise OS UI</title>
+<meta name="description" content="Seven vaporwave UI controls made of photographed parts: a CD you turn to change songs, a pool slider, an equalizer of pool water. Each is one file with no dependencies.">
+<meta property="og:title" content="Paradise OS UI">
+<meta property="og:image" content="https://paradise-os-ui.vercel.app/gallery/title.jpg">
+<link rel="icon" href="data:," />
+<link rel="stylesheet" href="desktop.css" />
+
+</head>
+<body>
+  <svg class="palm-wash" viewBox="0 0 400 320" aria-hidden="true">
+    <path d="M10,10 Q140,80 340,120 Q230,115 160,92 Q250,155 370,185 Q240,175 150,128 Q230,205 335,255 Q215,220 130,155 Q185,235 250,300 Q155,245 95,165 Q125,240 155,310 Q85,230 55,140 Q45,215 48,290 Q20,205 18,110 Z" />
+  </svg>
+
+  <!-- Classic OS Menu Bar -->
+  <nav class="menubar" aria-label="Paradise OS Menu Bar">
+    <div class="menu-left">
+      <span class="menu-brand">❖ PARADISE OS 95</span>
+      <a class="menu-item" href="https://github.com/finktheartist/paradise-os-ui">Code on GitHub</a>
+      <button class="menu-item hide-sm" id="menu-play-all" type="button">▶ Play All</button>
+      <button class="menu-item hide-sm" id="menu-cascade" type="button">Cascade</button>
+      <button class="menu-item hide-sm" id="menu-reset" type="button">Reset Windows</button>
+      <button class="menu-item hide-sm" id="menu-about" type="button">About</button>
+    </div>
+    <div class="menu-right" id="surf-group" role="radiogroup" aria-label="Desktop Wallpaper">
+      <button class="menu-item active" data-surf="teal" aria-checked="true">Teal 95</button>
+      <button class="menu-item" data-surf="paper" aria-checked="false">Alabaster</button>
+      <button class="menu-item" data-surf="indigo" aria-checked="false">2 AM Indigo</button>
+    </div>
+  </nav>
+
+  <main class="desktop">
+    <!-- ===================================================================
+         ROW 1 (FIRST): CDROM_DIAL.DRV (Holographic CD-ROM Track Dial) + PALM_DECK.EQ (7-Band Ceramic Liquid EQ)
+         =================================================================== -->
+    <div class="win-row">
+      <!-- WINDOW 6: CDROM_DIAL.DRV -->
+      <section class="win95" id="win-cdrom" data-win="cdrom">
+        <div class="titlebar" data-drag="win-cdrom" title="Drag the title bar">
+          <div class="titlebar-left">
+            <i class="win-ico" aria-hidden="true"></i>
+            <span class="titlebar-title">CDROM_DIAL.DRV — Synthwave Hip-Hop Jukebox</span>
+          </div>
+          <div class="win-pips">
+            <button class="win-pip" data-pip="min" type="button" aria-label="Minimize">_</button>
+            <button class="win-pip" data-pip="close" type="button" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="win-toolbar" style="padding:5px 6px;">
+          <div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
+            <button class="w95-btn compact sim-btn" id="cd-play" type="button" title="Play the CD-ROM track tour">▶ Play Demo</button>
+            <div class="w95-tabs" id="cd-tracks" role="radiogroup" aria-label="Track" style="gap:3px;">
+              <button class="w95-btn compact active" data-trk="0" title="Neon Boulevard">01</button>
+              <button class="w95-btn compact" data-trk="1" title="Chrome 808">02</button>
+              <button class="w95-btn compact" data-trk="2" title="Palm Drift">03</button>
+              <button class="w95-btn compact" data-trk="3" title="Midnight VHS">04</button>
+              <button class="w95-btn compact" data-trk="4" title="Helios Tape">05</button>
+            </div>
+            <button class="w95-btn compact" id="cd-toggle" type="button" title="Play or pause the disc">❚❚ Pause</button>
+            <button class="w95-btn compact" id="cd-scratch" type="button" title="Trigger optical laser scratch">Scratch</button>
+          </div>
+        </div>
+        <div class="win-well" style="min-height: 266px; padding: 10px;">
+          <paradise-cd-dial id="hero-cd" track="0" tracks="../audio/"></paradise-cd-dial>
+        </div>
+        <div class="win-status">
+          <span class="status-cell grow">Turn the dial to change tracks · click the hub to play/pause · feeds the EQ</span>
+          <span class="status-cell" id="cd-readout">TRK 01 · NEON BOULEVARD · 92 BPM</span>
+        </div>
+      </section>
+
+      <!-- WINDOW 7: PALM_DECK.EQ -->
+      <section class="win95" id="win-eq" data-win="eq">
+        <div class="titlebar" data-drag="win-eq" title="Drag the title bar">
+          <div class="titlebar-left">
+            <i class="win-ico" aria-hidden="true"></i>
+            <span class="titlebar-title">PALM_DECK.EQ — 7-Band Ceramic Liquid EQ</span>
+          </div>
+          <div class="win-pips">
+            <button class="win-pip" data-pip="min" type="button" aria-label="Minimize">_</button>
+            <button class="win-pip" data-pip="close" type="button" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="win-toolbar" style="padding:5px 6px;">
+          <div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
+            <button class="w95-btn compact sim-btn" id="eq-play" type="button" title="Play full 7-Band Ceramic EQ & Fountain Demo">▶ Play Demo</button>
+            <div class="w95-tabs" id="eq-presets" role="radiogroup" aria-label="EQ Preset" style="gap:3px;">
+              <button class="w95-btn compact active" data-eqp="mallsoft">Mallsoft</button>
+              <button class="w95-btn compact" data-eqp="sunset">Sunset</button>
+              <button class="w95-btn compact" data-eqp="glitch">Glitch</button>
+              <button class="w95-btn compact" data-eqp="flat">Flat</button>
+            </div>
+          </div>
+          <span style="font-size:9.5px; opacity:0.82;">Swipe across slots</span>
+        </div>
+        <div class="win-well" style="min-height: 266px; padding: 10px 8px; overflow: hidden;">
+          <div class="eq-scale">
+            <paradise-eq id="hero-eq" preset="mallsoft" live="true"></paradise-eq>
+          </div>
+        </div>
+        <div class="win-status">
+          <span class="status-cell grow">Swipe 7 ceramic slots · chrome peak pearls · CD sync</span>
+          <span class="status-cell" id="eq-readout">PRESET: MALLSOFT</span>
+        </div>
+      </section>
+    </div>
+    <!-- ===================================================================
+         WINDOW 1 (HERO FULL-WIDTH): POOL_FLOOD.EXE
+         =================================================================== -->
+    <section class="win95" id="win-pool" data-win="pool">
+      <div class="titlebar" data-drag="win-pool" title="Drag the title bar">
+        <div class="titlebar-left">
+          <i class="win-ico" aria-hidden="true"></i>
+          <span class="titlebar-title">POOL_FLOOD.EXE — [Glazed Checkerboard Slider]</span>
+        </div>
+        <div class="win-pips">
+          <button class="win-pip" data-pip="min" type="button" aria-label="Minimize">_</button>
+          <button class="win-pip" data-pip="max" type="button" aria-label="Maximize">□</button>
+          <button class="win-pip" data-pip="close" type="button" aria-label="Close">×</button>
+        </div>
+      </div>
+
+      <div class="win-toolbar">
+        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+          <button class="w95-btn compact sim-btn" id="pool-play" type="button" title="Play full Pool Flood Demo">▶ Play Demo</button>
+          <div class="w95-tabs" id="thumb-group" role="radiogroup" aria-label="Slider Thumb">
+            <button class="w95-btn compact active" data-thumb="sphere">Chrome Sphere</button>
+            <button class="w95-btn compact" data-thumb="dolphin">Dolphin</button>
+          </div>
+          <div class="w95-tabs" style="gap:4px;">
+            <button class="w95-btn compact" id="pool-splash" type="button" title="Send shallow-water splash">~ Splash</button>
+            <button class="w95-btn compact" id="pool-surge" type="button" title="Flood to 95% Overflow Surge">95% Surge</button>
+          </div>
+        </div>
+        <div class="paint-strip" id="mood-strip" role="radiogroup" aria-label="Window Chrome Mood">
+          <span style="margin-right:4px">CHROME:</span>
+          <button class="swatch active" data-mood="sunset" style="background:linear-gradient(135deg,#9EA0FA,#F4A5DB,#68EFEA)" title="Vapor Sunset"></button>
+          <button class="swatch" data-mood="navy" style="background:#233B85" title="Classic navy"></button>
+          <button class="swatch" data-mood="aqua" style="background:#56E8E2" title="Pool Aqua"></button>
+          <button class="swatch" data-mood="pink" style="background:#F58AC8" title="Hibiscus Pink"></button>
+        </div>
+      </div>
+
+      <div class="win-well">
+        <div class="pool-wrap">
+          <paradise-pool-slider id="hero-slider" value="62" thumb="sphere"></paradise-pool-slider>
+        </div>
+      </div>
+
+      <div class="win-status">
+        <span class="status-cell grow">1D shallow-water waves · flick fast to breach dolphin · 85%+ triggers OVERFLOW.SYS</span>
+        <span class="status-cell" id="slider-readout">62% · FLOODED</span>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ROW 2: DREAM_CTRL.DLL (toggle) + ERROR_95.EXE (cascade button)
+         =================================================================== -->
+    <div class="win-row">
+      <!-- WINDOW 2: DREAM_CTRL.DLL -->
+      <section class="win95" id="win-toggle" data-win="toggle">
+        <div class="titlebar" data-drag="win-toggle" title="Drag the title bar">
+          <div class="titlebar-left">
+            <i class="win-ico" aria-hidden="true"></i>
+            <span class="titlebar-title">DREAM_CTRL.DLL — OS Reality Switch</span>
+          </div>
+          <div class="win-pips">
+            <button class="win-pip" data-pip="min" type="button" aria-label="Minimize">_</button>
+            <button class="win-pip" data-pip="close" type="button" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="win-toolbar" style="padding:5px 6px;">
+          <div style="display:flex; align-items:center; gap:5px; flex-wrap:wrap;">
+            <button class="w95-btn compact sim-btn" id="toggle-play" type="button" title="Play full OS Reality Switch Demo">▶ Play Demo</button>
+            <div class="w95-tabs" id="toggle-mode-group" role="radiogroup" aria-label="Switch Lifecycle Mode">
+              <button class="w95-btn compact active" data-tmode="ready">Ready</button>
+              <button class="w95-btn compact" data-tmode="busy">Busy</button>
+              <button class="w95-btn compact" data-tmode="locked">Locked</button>
+            </div>
+          </div>
+          <span style="font-size:9.5px; opacity:0.82;" id="reality-sync-note">OS SYNC: PARADISE.SYS</span>
+        </div>
+        <div class="win-well" style="min-height: 204px;">
+          <paradise-toggle id="hero-toggle" checked></paradise-toggle>
+        </div>
+        <div class="win-status">
+          <span class="status-cell grow">Drag across 50% for leak tension · flips OS Reality ↔ Paradise</span>
+          <span class="status-cell" id="toggle-readout">PARADISE · ON</span>
+        </div>
+      </section>
+
+      <!-- WINDOW 3: ERROR_95.EXE -->
+      <section class="win95" id="win-cascade" data-win="cascade">
+        <div class="titlebar" data-drag="win-cascade" title="Drag the title bar">
+          <div class="titlebar-left">
+            <i class="win-ico" aria-hidden="true"></i>
+            <span class="titlebar-title">ERROR_95.EXE — 4D Hypercube Cascade</span>
+          </div>
+          <div class="win-pips">
+            <button class="win-pip" data-pip="min" type="button" aria-label="Minimize">_</button>
+            <button class="win-pip" data-pip="close" type="button" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="win-toolbar" style="padding:5px 6px;">
+          <div class="w95-tabs" style="gap:4px;">
+            <button class="w95-btn compact sim-btn" id="cascade-play" type="button" title="Play full Hypercube & Mega-Cascade Demo">▶ Play Demo</button>
+            <button class="w95-btn compact" id="cascade-charge" type="button" title="Hold-charge 4D hypercube & launch Mega-Cascade">⚡ Charge Mega</button>
+            <button class="w95-btn compact" id="cascade-clear" type="button" title="CRT collapse clear">Clear</button>
+          </div>
+          <span style="font-size:9.5px; opacity:0.82;">Hold for 4D cube</span>
+        </div>
+        <div class="win-well" style="min-height: 204px; overflow: visible;">
+          <paradise-cascade-button id="hero-cascade" title="ERROR 1995" label="Still dreaming?"></paradise-cascade-button>
+        </div>
+        <div class="win-status">
+          <span class="status-cell grow">Hold to charge 4D hypercube · release for a card waterfall</span>
+          <span class="status-cell" id="cascade-readout">COMBO ×0</span>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================
+         ROW 3: CHANNEL_CRT.SYS (Mini-CRT Tabs) + HELIOS_AGENT.EXE (3D Floating Statue)
+         =================================================================== -->
+    <div class="win-row">
+      <!-- WINDOW 4: CHANNEL_CRT.SYS -->
+      <section class="win95" id="win-crt" data-win="crt">
+        <div class="titlebar" data-drag="win-crt" title="Drag the title bar">
+          <div class="titlebar-left">
+            <i class="win-ico" aria-hidden="true"></i>
+            <span class="titlebar-title">CHANNEL_CRT.SYS — Floating 3D CRTs</span>
+          </div>
+          <div class="win-pips">
+            <button class="win-pip" data-pip="min" type="button" aria-label="Minimize">_</button>
+            <button class="win-pip" data-pip="close" type="button" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="win-toolbar" style="padding:5px 6px;">
+          <div class="w95-tabs" style="gap:4px;">
+            <button class="w95-btn compact sim-btn" id="crt-play" type="button" title="Play full 3D CRT Channel & Degauss Demo">▶ Play Demo</button>
+            <button class="w95-btn compact" id="crt-degauss" type="button" title="Fire CRT magnetic coil degauss">⚡ Degauss</button>
+            <button class="w95-btn compact" id="crt-snow" type="button" title="Test SMPTE signal interference">Snow Burst</button>
+          </div>
+          <span style="font-size:9.5px; opacity:0.82;">Double-click to degauss</span>
+        </div>
+        <div class="win-well" style="min-height: 274px; padding: 8px 10px 8px; justify-content: center; overflow: hidden;">
+          <div class="crt-scale">
+            <paradise-crt-tabs id="hero-crt" value="1"></paradise-crt-tabs>
+          </div>
+        </div>
+        <div class="win-status">
+          <span class="status-cell grow">Phosphor collapse · cursor goldfish · CH 01 mirrors Pool</span>
+          <span class="status-cell" id="crt-readout">CH 02 · SUNSET</span>
+        </div>
+      </section>
+
+      <!-- WINDOW 5: HELIOS_AGENT.EXE -->
+      <section class="win95" id="win-statue" data-win="statue">
+        <div class="titlebar" data-drag="win-statue" title="Drag the title bar">
+          <div class="titlebar-left">
+            <i class="win-ico" aria-hidden="true"></i>
+            <span class="titlebar-title">HELIOS_AGENT.EXE — 3D Statue State</span>
+          </div>
+          <div class="win-pips">
+            <button class="win-pip" data-pip="min" type="button" aria-label="Minimize">_</button>
+            <button class="win-pip" data-pip="close" type="button" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="win-toolbar" style="justify-content:space-between; gap:5px 6px; padding:5px 6px;">
+          <div class="w95-tabs" id="orb-group" role="radiogroup" aria-label="Agent State" style="flex-wrap:wrap; gap:3px;">
+            <button class="w95-btn compact" data-st="idle">Idle</button>
+            <button class="w95-btn compact active" data-st="thinking">Thinking</button>
+            <button class="w95-btn compact" data-st="searching">Searching</button>
+            <button class="w95-btn compact" data-st="tool">Tool</button>
+            <button class="w95-btn compact" data-st="writing">Writing</button>
+            <button class="w95-btn compact" data-st="error">Error</button>
+            <button class="w95-btn compact" data-st="done">Done</button>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; width:100%; gap:6px;">
+            <div class="w95-tabs" style="gap:4px;">
+              <button class="w95-btn compact sim-btn" id="orb-sim" type="button" title="Play full 9s agent lifecycle">▶ Play Demo</button>
+              <button class="w95-btn compact" id="orb-pulse" type="button" title="Emit token pulse">✦ Pulse</button>
+            </div>
+            <span style="font-size:9.5px; opacity:0.78;">API: state · progress · pulse()</span>
+          </div>
+        </div>
+        <div class="win-well" style="min-height: 274px; padding: 12px 10px 10px;">
+          <paradise-statue id="hero-orb" state="thinking"></paradise-statue>
+        </div>
+        <div class="win-status">
+          <span class="status-cell grow">4-slab 3D WebGL sculpture · hover to steer · click to cycle</span>
+          <span class="status-cell" id="orb-readout">STATE: THINKING</span>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Floating System Alert Toast (triggered when pressing [×] on any window or About) -->
+  <div class="win95 sys-toast hidden" id="sys-toast" role="dialog" aria-label="System Alert">
+    <div class="titlebar">
+      <div class="titlebar-left">
+        <i class="win-ico" aria-hidden="true"></i>
+        <span class="titlebar-title">SYSTEM 95</span>
+      </div>
+      <div class="win-pips"><button class="win-pip" id="toast-x" type="button" aria-label="Dismiss">×</button></div>
+    </div>
+    <div class="toast-body">
+      <p id="toast-msg">Critical error: cannot close paradise.</p>
+      <div><button class="w95-btn" id="toast-ok" type="button">OK</button></div>
+    </div>
+  </div>
+
+  <!-- Pop-up Start Menu -->
+  <div class="start-menu" id="start-menu" role="menu">
+    <div class="start-spine"><span>PARADISE 95</span></div>
+    <div class="start-items">
+      <button class="start-item" id="sm-sim" role="menuitem"><span>Run Helios Lifecycle</span><span>▸</span></button>
+      <button class="start-item" id="sm-cascade" role="menuitem"><span>Launch Cascade</span><span>▸</span></button>
+      <button class="start-item" id="sm-pulse" role="menuitem"><span>Signal Glitch All</span><span>▸</span></button>
+      <div class="start-sep"></div>
+      <button class="start-item" id="sm-teal" role="menuitem"><span>Wallpaper: Teal 95</span></button>
+      <button class="start-item" id="sm-paper" role="menuitem"><span>Wallpaper: Alabaster</span></button>
+      <button class="start-item" id="sm-indigo" role="menuitem"><span>Wallpaper: 2 AM Indigo</span></button>
+      <div class="start-sep"></div>
+      <button class="start-item" id="sm-reset" role="menuitem"><span>Reset Window Positions</span></button>
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <footer class="taskbar" aria-label="Taskbar">
+    <div class="tb-left">
+      <button class="start-btn" id="start-btn" type="button" aria-expanded="false">
+        <span class="start-flag" aria-hidden="true">
+          <i style="background:#FF74C2"></i><i style="background:#56EFE8"></i>
+          <i style="background:#A69DFC"></i><i style="background:#FFD982"></i>
+        </span>
+        Start
+      </button>
+      <span class="tb-div" aria-hidden="true"></span>
+      <button class="task-tab active" data-focus="win-cdrom">CDROM_DIAL.DRV</button>
+      <button class="task-tab" data-focus="win-pool">POOL_FLOOD.EXE</button>
+      <button class="task-tab hide-sm" data-focus="win-toggle">DREAM_CTRL.DLL</button>
+      <button class="task-tab hide-sm" data-focus="win-cascade">ERROR_95.EXE</button>
+      <button class="task-tab hide-sm" data-focus="win-crt">CHANNEL_CRT.SYS</button>
+      <button class="task-tab" data-focus="win-statue">HELIOS_AGENT.EXE</button>
+      <button class="task-tab hide-sm" data-focus="win-eq">PALM_DECK.EQ</button>
+    </div>
+    <div class="tray">
+      <button class="tray-btn" id="btn-sound" type="button" aria-pressed="true" title="Toggle Vaporwave Audio">♪ ON</button>
+      <span id="tray-clock">7:24 PM</span>
+    </div>
+  </footer>
+
+<script src="../cd-dial/cd-dial.js"></script>
+<script src="../eq/eq.js"></script>
+<script src="../slider/slider.js"></script>
+<script src="../toggle/toggle.js"></script>
+<script src="../button/button.js"></script>
+<script src="../tabs/tabs.js"></script>
+<script src="../agent-status/agent-status.js"></script>
+<script src="prompts.js"></script>
+<script>
+(() => {
+  'use strict';
+  const GP = window.ParadiseOS;
+  const SND = window.ParadiseSound;
+
+  // --- Wallpaper Theme Switcher (Teal 95 / Alabaster / 2 AM Indigo) ---
+  const surfGroup = document.getElementById('surf-group');
+  function setSurface(surf) {
+    document.body.classList.remove('surf-paper', 'surf-indigo');
+    if (surf === 'paper') document.body.classList.add('surf-paper');
+    if (surf === 'indigo') document.body.classList.add('surf-indigo');
+    surfGroup.querySelectorAll('.menu-item').forEach((b) => {
+      b.classList.toggle('active', b.dataset.surf === surf);
+      b.setAttribute('aria-checked', String(b.dataset.surf === surf));
+    });
+    SND?.keyTap();
+  }
+  surfGroup.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-surf]');
+    if (b) setSurface(b.dataset.surf);
+  });
+
+  // --- MS Paint Window Chrome Accent Swatches ---
+  const moodStrip = document.getElementById('mood-strip');
+  moodStrip.addEventListener('click', (e) => {
+    const sw = e.target.closest('.swatch');
+    if (!sw) return;
+    moodStrip.querySelectorAll('.swatch').forEach((s) => s.classList.toggle('active', s === sw));
+    document.body.classList.remove('mood-sunset', 'mood-navy', 'mood-aqua', 'mood-pink');
+    document.body.classList.add('mood-' + sw.dataset.mood);
+    SND?.keyTap();
+  });
+
+  // --- Sound Toggle ---
+  const btnSound = document.getElementById('btn-sound');
+  btnSound.addEventListener('click', () => {
+    SND.muted = !SND.muted;
+    btnSound.textContent = SND.muted ? '♪ OFF' : '♪ ON';
+    btnSound.setAttribute('aria-pressed', String(!SND.muted));
+    if (!SND.muted) SND.winAlert();
+  });
+
+  // --- Live Retro Clock ---
+  const trayClock = document.getElementById('tray-clock');
+  const tickClock = () => {
+    const d = new Date();
+    let h = d.getHours();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    trayClock.textContent = `${h}:${String(d.getMinutes()).padStart(2, '0')} ${ampm}`;
+  };
+  tickClock();
+  setInterval(tickClock, 30000);
+
+  // --- Draggable title bars with frozen-window drag trails ---
+  const offsets = new Map();
+  let topZ = 10;
+  document.querySelectorAll('.titlebar[data-drag]').forEach((bar) => {
+    const win = document.getElementById(bar.dataset.drag);
+    let dragging = false, sx = 0, sy = 0, bx = 0, by = 0, gx = 0, gy = 0;
+
+    bar.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('button')) return;
+      bar.setPointerCapture(e.pointerId);
+      dragging = true;
+      win.classList.add('dragging');
+      win.style.zIndex = String(++topZ);
+      const cur = offsets.get(win) || { x: 0, y: 0 };
+      bx = cur.x; by = cur.y;
+      sx = e.clientX; sy = e.clientY;
+      gx = e.clientX; gy = e.clientY;
+      SND?.keyTap();
+    });
+    bar.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const nx = GP.clamp(bx + (e.clientX - sx), -220, 220);
+      const ny = GP.clamp(by + (e.clientY - sy), -120, 180);
+      offsets.set(win, { x: nx, y: ny });
+      win.style.transform = `translate(${nx}px, ${ny}px)`;
+
+      // Stamp a frozen drag ghost every 20px
+      if (!GP.reducedMotion && Math.hypot(e.clientX - gx, e.clientY - gy) > 20) {
+        gx = e.clientX; gy = e.clientY;
+        const r = win.getBoundingClientRect();
+        const ghost = document.createElement('div');
+        ghost.className = 'drag-ghost';
+        ghost.style.left = `${r.left}px`;
+        ghost.style.top = `${r.top}px`;
+        ghost.style.width = `${r.width}px`;
+        ghost.style.height = `${r.height}px`;
+        ghost.innerHTML = '<div class="gtb"></div>';
+        document.body.appendChild(ghost);
+        requestAnimationFrame(() => { ghost.style.opacity = '0'; });
+        setTimeout(() => ghost.remove(), 540);
+      }
+    });
+    const end = () => { if (dragging) { dragging = false; win.classList.remove('dragging'); } };
+    bar.addEventListener('pointerup', end);
+    bar.addEventListener('pointercancel', end);
+  });
+
+  function resetWindows() {
+    offsets.clear();
+    document.querySelectorAll('.win95[data-win]').forEach((w) => {
+      w.style.transform = '';
+      w.style.zIndex = '';
+    });
+    SND?.dialog(false);
+  }
+
+  // --- System Alert Toast (clicking [×] on any window triggers nostalgic error!) ---
+  const sysToast = document.getElementById('sys-toast');
+  const toastMsg = document.getElementById('toast-msg');
+  function showToast(msg) {
+    toastMsg.textContent = msg;
+    sysToast.classList.remove('hidden');
+    SND?.winAlert();
+  }
+  const hideToast = () => { sysToast.classList.add('hidden'); SND?.keyTap(); };
+  document.getElementById('toast-x').addEventListener('click', hideToast);
+  document.getElementById('toast-ok').addEventListener('click', hideToast);
+
+  document.querySelectorAll('.win-pip[data-pip="close"]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const win = btn.closest('.win95');
+      win.classList.remove('shake'); void win.offsetWidth; win.classList.add('shake');
+      showToast('Critical error: cannot close paradise.');
+    });
+  });
+  document.querySelectorAll('.win-pip[data-pip="min"], .win-pip[data-pip="max"]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const win = btn.closest('.win95');
+      win.classList.remove('shake'); void win.offsetWidth; win.classList.add('shake');
+      SND?.glitchSlice();
+    });
+  });
+
+  // --- Taskbar Focus Buttons & Start Menu ---
+  const startBtn = document.getElementById('start-btn');
+  const startMenu = document.getElementById('start-menu');
+  const closeStart = () => { startMenu.classList.remove('open'); startBtn.classList.remove('open'); startBtn.setAttribute('aria-expanded', 'false'); };
+  startBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = !startMenu.classList.contains('open');
+    startMenu.classList.toggle('open', open);
+    startBtn.classList.toggle('open', open);
+    startBtn.setAttribute('aria-expanded', String(open));
+    SND?.keyTap();
+  });
+  document.addEventListener('click', (e) => { if (!e.target.closest('#start-menu') && !e.target.closest('#start-btn')) closeStart(); });
+
+  document.querySelectorAll('.task-tab[data-focus]').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.task-tab').forEach((t) => t.classList.toggle('active', t === tab));
+      const target = document.getElementById(tab.dataset.focus);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.remove('shake'); void target.offsetWidth; target.classList.add('shake');
+        SND?.keyTap();
+      }
+    });
+  });
+
+  // --- Reusable Cancellable Demo Runner for Every Component Sheet ---
+  function createDemoRunner(btn, buildSteps, onStop) {
+    let timers = [];
+    let active = false;
+    const stop = () => {
+      if (!active) return;
+      active = false;
+      for (const id of timers) clearTimeout(id);
+      timers = [];
+      btn.classList.remove('running');
+      btn.textContent = '▶ Play Demo';
+      onStop?.();
+    };
+    const startDemo = () => {
+      stop();
+      active = true;
+      btn.classList.add('running');
+      btn.textContent = '■ Stop';
+      const steps = buildSteps();
+      let maxAt = 0;
+      for (const [ms, fn] of steps) {
+        maxAt = Math.max(maxAt, ms);
+        timers.push(setTimeout(() => { if (active) fn(); }, ms));
+      }
+      timers.push(setTimeout(() => stop(), maxAt + 120));
+    };
+    btn.addEventListener('click', () => (active ? stop() : startDemo()));
+    return { start: startDemo, stop, get running() { return active; } };
+  }
+
+  // --- Control Bindings & PARADISE OS 95 Cross-Window Reactive Bus ---
+  // 1. Pool Flood Slider (1D shallow-water physics + overflow surge + Play Demo!)
+  const heroSlider = document.getElementById('hero-slider');
+  const sliderReadout = document.getElementById('slider-readout');
+  const thumbGroup = document.getElementById('thumb-group');
+  let fastTimer = 0;
+  const regimeLabel = (val) => val < 5 ? 'DRY MARBLE' : val >= 85 ? 'OVERFLOW.SYS' : 'FLOODED';
+  const setThumbUI = (mode) => {
+    thumbGroup.querySelectorAll('.w95-btn').forEach((x) => x.classList.toggle('active', x.dataset.thumb === mode));
+    heroSlider.thumb = mode;
+  };
+  const syncSlider = (val, speed = 0) => {
+    if (Math.abs(speed) > 0.32) {
+      sliderReadout.textContent = `${val}% · ${speed > 0 ? 'FF >>' : '<< REW'}`;
+      sliderReadout.classList.add('fast');
+      clearTimeout(fastTimer);
+      fastTimer = setTimeout(() => {
+        sliderReadout.textContent = `${heroSlider.value}% · ${regimeLabel(heroSlider.value)}`;
+        sliderReadout.classList.remove('fast');
+      }, 240);
+    } else {
+      sliderReadout.textContent = `${val}% · ${regimeLabel(val)}`;
+      sliderReadout.classList.toggle('fast', val >= 85);
+    }
+  };
+  const poolDemo = createDemoRunner(document.getElementById('pool-play'), () => [
+    [0,    () => { setThumbUI('sphere'); heroSlider.setNorm(0.10, true); syncSlider(10, -0.5); SND?.poolSettle(0.1); }],
+    [950,  () => { heroSlider.setNorm(0.50, true); syncSlider(50, 0.7); }],
+    [1650, () => { heroSlider.setNorm(0.75, true); syncSlider(75, 0.7); }],
+    [2350, () => { setThumbUI('dolphin'); SND?.poolToggle(true); }],
+    [2950, () => { heroSlider.setNorm(0.95, true); heroSlider.surge(1.15); heroSlider.triggerBreach(1.15); syncSlider(95, 0.8); }],
+    [4550, () => { heroSlider.splash(0.68, 1.15); }],
+    [5750, () => { setThumbUI('sphere'); heroSlider.setNorm(0.62, true); syncSlider(62, -0.4); SND?.poolSettle(0.62); }],
+    [6650, () => { syncSlider(62, 0); }],
+  ]);
+  heroSlider.addEventListener('pointerdown', () => poolDemo.stop());
+  heroSlider.addEventListener('input', (e) => syncSlider(e.detail.value, e.detail.speed));
+  heroSlider.addEventListener('scrub', (e) => syncSlider(e.detail.value, e.detail.speed));
+  thumbGroup.addEventListener('click', (e) => {
+    const b = e.target.closest('.w95-btn');
+    if (!b) return;
+    poolDemo.stop();
+    setThumbUI(b.dataset.thumb);
+    SND?.poolToggle(true);
+  });
+  document.getElementById('pool-splash').addEventListener('click', () => { poolDemo.stop(); heroSlider.splash(null, 1.15); });
+  document.getElementById('pool-surge').addEventListener('click', () => {
+    poolDemo.stop();
+    heroSlider.setNorm(0.95, true);
+    heroSlider.surge(1.1);
+    syncSlider(95, 0);
+  });
+
+  // 2. Dream mode switch (Ready / Busy / Locked + OS Reality Switch + Play Demo!)
+  const heroToggle = document.getElementById('hero-toggle');
+  const toggleReadout = document.getElementById('toggle-readout');
+  const toggleModeGroup = document.getElementById('toggle-mode-group');
+  const realitySyncNote = document.getElementById('reality-sync-note');
+  const setToggleModeUI = (mode) => {
+    toggleModeGroup.querySelectorAll('.w95-btn').forEach((x) => x.classList.toggle('active', x.dataset.tmode === mode));
+    heroToggle.mode = mode;
+  };
+  const toggleDemo = createDemoRunner(document.getElementById('toggle-play'), () => [
+    [0,    () => { setToggleModeUI('busy'); toggleReadout.textContent = 'SYNCING · BUSY'; SND?.keyTap(); }],
+    [1650, () => { setToggleModeUI('ready'); heroToggle.setChecked(false); }],
+    [3400, () => { setToggleModeUI('locked'); toggleReadout.textContent = 'LOCKED · READ ONLY'; heroToggle.nudgeLocked(); }],
+    [4350, () => { heroToggle.nudgeLocked(); }],
+    [5200, () => { setToggleModeUI('ready'); heroToggle.setChecked(true); }],
+    [6600, () => { toggleReadout.textContent = 'PARADISE · ON'; }],
+  ]);
+  heroToggle.addEventListener('pointerdown', () => toggleDemo.stop());
+  heroToggle.addEventListener('change', (e) => {
+    const on = e.detail.checked;
+    toggleReadout.textContent = on ? 'PARADISE · ON' : 'REALITY · OFF';
+    realitySyncNote.textContent = on ? 'OS SYNC: PARADISE.SYS' : 'OS SYNC: REALITY.SYS';
+  });
+  heroToggle.addEventListener('blocked', () => {
+    toggleReadout.textContent = 'LOCKED · READ ONLY';
+  });
+  toggleModeGroup.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-tmode]');
+    if (!b) return;
+    toggleDemo.stop();
+    const mode = b.dataset.tmode;
+    setToggleModeUI(mode);
+    if (mode === 'locked') {
+      toggleReadout.textContent = 'LOCKED · READ ONLY';
+      heroToggle.nudgeLocked();
+    } else if (mode === 'busy') {
+      toggleReadout.textContent = 'SYNCING · BUSY';
+      SND?.keyTap();
+    } else {
+      toggleReadout.textContent = heroToggle.checked ? 'PARADISE · ON' : 'REALITY · OFF';
+      SND?.keyTap();
+    }
+  });
+
+  // 3. 4D hypercube cascade button (+ Play Demo!)
+  const heroCascade = document.getElementById('hero-cascade');
+  const cascadeReadout = document.getElementById('cascade-readout');
+  const cascadeDemo = createDemoRunner(document.getElementById('cascade-play'), () => [
+    [0,    () => heroCascade.fireCascade(0)],
+    [720,  () => heroCascade.fireCascade(0.2)],
+    [1550, () => heroCascade.triggerChargeDemo()], // Holds 4D hypercube ~920ms -> fires 9-card Mega-Cascade!
+    [4850, () => heroCascade.clearCascade()],
+    [5600, () => {}],
+  ]);
+  heroCascade.addEventListener('pointerdown', () => cascadeDemo.stop());
+  heroCascade.addEventListener('charge', (e) => {
+    cascadeReadout.textContent = `CHARGE · ${Math.round(e.detail.charge * 100)}%`;
+  });
+  heroCascade.addEventListener('action', (e) => {
+    if (e.detail.cleared) cascadeReadout.textContent = 'COMBO ×0';
+    else cascadeReadout.textContent = e.detail.mega ? `MEGA ×${e.detail.combo}` : `COMBO ×${e.detail.combo}`;
+  });
+  document.getElementById('cascade-charge').addEventListener('click', () => { cascadeDemo.stop(); heroCascade.triggerChargeDemo(); });
+  document.getElementById('cascade-clear').addEventListener('click', () => { cascadeDemo.stop(); heroCascade.clearCascade(); });
+
+  // 4. Zero-G Floating 3D Mini-CRT Channel Tabs (+ Degauss + Snow Burst + Play Demo!)
+  const heroCrt = document.getElementById('hero-crt');
+  const crtReadout = document.getElementById('crt-readout');
+  const chNames = ['CH 01 · POOL', 'CH 02 · SUNSET', 'CH 03 · AQUARIUM'];
+  const crtDemo = createDemoRunner(document.getElementById('crt-play'), () => [
+    [0,    () => heroCrt.select(0)],
+    [1700, () => heroCrt.degauss()],
+    [3400, () => heroCrt.select(2)],
+    [5150, () => { heroCrt.glitchSnow(0.95); SND?.glitchSlice(); }],
+    [6250, () => heroCrt.select(1)],
+    [7250, () => {}],
+  ]);
+  heroCrt.addEventListener('pointerdown', () => crtDemo.stop());
+  heroCrt.addEventListener('change', (e) => {
+    crtReadout.textContent = chNames[e.detail.channel] || chNames[0];
+  });
+  heroCrt.addEventListener('degauss', () => {
+    crtReadout.textContent = 'DEGAUSSING COIL…';
+    setTimeout(() => { crtReadout.textContent = chNames[heroCrt.value] || chNames[0]; }, 920);
+  });
+  document.getElementById('crt-degauss').addEventListener('click', () => { crtDemo.stop(); heroCrt.degauss(); });
+  document.getElementById('crt-snow').addEventListener('click', () => { crtDemo.stop(); heroCrt.glitchSnow(0.95); SND?.glitchSlice(); });
+
+  // Global OS-Wide Reactive Bus Wiring (connecting all 5 windows seamlessly!)
+  GP.bus.on('reality', ({ paradise }) => {
+    document.body.classList.toggle('reality-mode', !paradise);
+    realitySyncNote.textContent = paradise ? 'OS SYNC: PARADISE.SYS' : 'OS SYNC: REALITY.SYS';
+  });
+  GP.bus.on('agent', ({ state }) => {
+    document.body.classList.toggle('agent-alert', state === 'error');
+    if (state === 'done') heroSlider.surge(0.92);
+  });
+
+  // 5. Floating 3D Statue Agent State (7 states + live pulse + choreographed Play Demo!)
+  const heroOrb = document.getElementById('hero-orb');
+  const orbReadout = document.getElementById('orb-readout');
+  const orbGroup = document.getElementById('orb-group');
+  const orbSimBtn = document.getElementById('orb-sim');
+  const orbPulseBtn = document.getElementById('orb-pulse');
+  const syncOrb = (st, prog = null) => {
+    const pct = prog !== null && Number.isFinite(prog) ? ` · ${Math.round(prog * 100)}%` : '';
+    orbReadout.textContent = `STATE: ${st.toUpperCase()}${pct}`;
+    orbGroup.querySelectorAll('.w95-btn').forEach((b) => b.classList.toggle('active', b.dataset.st === st));
+  };
+  orbGroup.addEventListener('click', (e) => {
+    const b = e.target.closest('.w95-btn');
+    if (!b) return;
+    heroOrb.stopSimulation();
+    heroOrb.progress = null;
+    heroOrb.state = b.dataset.st;
+    SND?.orbState(b.dataset.st);
+    syncOrb(b.dataset.st);
+  });
+  orbPulseBtn.addEventListener('click', () => {
+    heroOrb.pulse(heroOrb.state === 'tool' ? 'tool' : 'token');
+  });
+  orbSimBtn.addEventListener('click', () => {
+    if (heroOrb.simulating) {
+      heroOrb.stopSimulation();
+      heroOrb.progress = null;
+      syncOrb(heroOrb.state);
+    } else {
+      heroOrb.simulateRun();
+    }
+  });
+  heroOrb.addEventListener('change', (e) => {
+    if (!e.detail.simulated) heroOrb.progress = null;
+    syncOrb(e.detail.state, e.detail.simulated ? e.detail.progress : null);
+  });
+  heroOrb.addEventListener('sim-start', () => {
+    orbSimBtn.classList.add('running');
+    orbSimBtn.textContent = '■ Stop';
+  });
+  heroOrb.addEventListener('sim-progress', (e) => {
+    syncOrb(e.detail.state, e.detail.progress);
+  });
+  heroOrb.addEventListener('sim-end', (e) => {
+    orbSimBtn.classList.remove('running');
+    orbSimBtn.textContent = '▶ Play Demo';
+    syncOrb(e.detail.state, e.detail.completed ? 1 : null);
+  });
+
+  // 6. Holographic CD-ROM Synthwave Hip-Hop Jukebox Dial (+ Play Demo!)
+  const heroCd = document.getElementById('hero-cd');
+  const cdReadout = document.getElementById('cd-readout');
+  const cdTracks = document.getElementById('cd-tracks');
+  const cdToggle = document.getElementById('cd-toggle');
+  const syncCd = (d = {}) => {
+    const idx = d.track ?? heroCd.track;
+    const playing = d.playing ?? heroCd.playing;
+    const code = d.code ?? String(idx + 1).padStart(2, '0');
+    const title = d.title ?? '';
+    const bpm = d.bpm ?? '';
+    cdReadout.textContent = `TRK ${code} · ${title} · ${playing ? `${bpm} BPM` : 'PAUSED'}`;
+    cdReadout.classList.toggle('fast', !!playing && bpm >= 100);
+    cdToggle.textContent = playing ? '❚❚ Pause' : '▶ Play';
+    cdTracks.querySelectorAll('.w95-btn').forEach((b) => b.classList.toggle('active', Number(b.dataset.trk) === idx));
+  };
+  const cdDemo = createDemoRunner(document.getElementById('cd-play'), () => [
+    [0,    () => heroCd.selectTrack(0)],
+    [1900, () => heroCd.selectTrack(1)],
+    [3800, () => heroCd.selectTrack(2)],
+    [5200, () => heroCd.scratchPulse(-1)],
+    [5700, () => heroCd.selectTrack(3)],
+    [7600, () => heroCd.selectTrack(4)],
+    [9500, () => {}],
+  ]);
+  heroCd.addEventListener('pointerdown', () => cdDemo.stop());
+  heroCd.addEventListener('input', (e) => syncCd(e.detail));
+  heroCd.addEventListener('change', (e) => syncCd(e.detail));
+  cdTracks.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-trk]');
+    if (!b) return;
+    cdDemo.stop();
+    heroCd.selectTrack(Number(b.dataset.trk));
+  });
+  cdToggle.addEventListener('click', () => { cdDemo.stop(); heroCd.togglePlay(); });
+  document.getElementById('cd-scratch').addEventListener('click', () => { cdDemo.stop(); heroCd.scratchPulse(1); });
+
+  // 7. 7-Band Glazed Pink Ceramic Liquid-Glass Spectrum Equalizer (+ Play Demo!)
+  const heroEq = document.getElementById('hero-eq');
+  const eqReadout = document.getElementById('eq-readout');
+  const eqPresets = document.getElementById('eq-presets');
+  const setEqPresetUI = (name) => {
+    eqPresets.querySelectorAll('.w95-btn').forEach((b) => b.classList.toggle('active', b.dataset.eqp === name));
+    eqReadout.textContent = `PRESET: ${name.toUpperCase()}`;
+    eqReadout.classList.toggle('fast', name === 'glitch');
+  };
+  const eqDemo = createDemoRunner(document.getElementById('eq-play'), () => {
+    // Choreographed swipe wave -> Sunset -> Glitch CLIP +3dB -> Harmonic Fountain -> Mallsoft!
+    const sweep = [0.35, 0.52, 0.74, 0.92, 0.76, 0.56, 0.40];
+    const steps = sweep.map((v, i) => [i * 150, () => { heroEq.setBand(i, v, true); eqReadout.textContent = `SWIPE · BAND 0${i + 1}`; }]);
+    steps.push(
+      [1450, () => { heroEq.applyPreset('sunset'); setEqPresetUI('sunset'); }],
+      [2950, () => { heroEq.applyPreset('glitch'); setEqPresetUI('glitch'); }],
+      [4650, () => { heroEq.triggerFountain(); SND?.eqPreset('mallsoft'); eqReadout.textContent = 'HARMONIC FOUNTAIN'; }],
+      [5850, () => { heroEq.applyPreset('mallsoft'); setEqPresetUI('mallsoft'); }],
+      [6800, () => {}],
+    );
+    return steps;
+  });
+  heroEq.addEventListener('pointerdown', () => eqDemo.stop());
+  heroEq.addEventListener('input', (e) => {
+    eqPresets.querySelectorAll('.w95-btn').forEach((b) => b.classList.remove('active'));
+    eqReadout.textContent = `BAND 0${e.detail.band + 1} · ${e.detail.value}%`;
+    eqReadout.classList.toggle('fast', e.detail.value >= 88);
+  });
+  eqPresets.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-eqp]');
+    if (!b) return;
+    eqDemo.stop();
+    heroEq.applyPreset(b.dataset.eqp);
+    setEqPresetUI(b.dataset.eqp);
+  });
+
+  // Menu & Start Menu actions (including ▶ Play All across all 7 component sheets!)
+  const menuPlayAll = document.getElementById('menu-play-all');
+  const anyPlaying = () => poolDemo.running || toggleDemo.running || cascadeDemo.running || crtDemo.running || cdDemo.running || eqDemo.running || heroOrb.simulating;
+  function stopAllDemos() {
+    poolDemo.stop(); toggleDemo.stop(); cascadeDemo.stop(); crtDemo.stop(); cdDemo.stop(); eqDemo.stop();
+    heroOrb.stopSimulation();
+    menuPlayAll.textContent = '▶ Play All';
+    menuPlayAll.classList.remove('active');
+  }
+  function playAllDemos() {
+    if (anyPlaying()) { stopAllDemos(); return; }
+    menuPlayAll.textContent = '■ Stop All';
+    menuPlayAll.classList.add('active');
+    poolDemo.start();
+    toggleDemo.start();
+    cascadeDemo.start();
+    crtDemo.start();
+    cdDemo.start();
+    eqDemo.start();
+    heroOrb.simulateRun();
+    setTimeout(() => {
+      if (!anyPlaying()) { menuPlayAll.textContent = '▶ Play All'; menuPlayAll.classList.remove('active'); }
+    }, 9200);
+  }
+  menuPlayAll.addEventListener('click', playAllDemos);
+  function glitchAll() {
+    heroToggle.toggle();
+    heroCascade.fireCascade(0.75);
+    heroCrt.select((heroCrt.value + 1) % 3);
+    heroSlider.setNorm(heroSlider._norm > 0.5 ? 0.24 : 0.78, true);
+    heroCd.scratchPulse(1);
+    heroEq.triggerFountain();
+    heroOrb.pulse('token');
+    setTimeout(() => heroSlider.spawnRipple(), 220);
+  }
+  document.getElementById('menu-cascade').addEventListener('click', () => heroCascade.fireCascade());
+  document.getElementById('menu-reset').addEventListener('click', resetWindows);
+  document.getElementById('menu-about').addEventListener('click', () => showToast('PARADISE OS 95 · Build 1995.08 — Hit ▶ Play Demo on any component sheet!'));
+  document.getElementById('sm-sim').addEventListener('click', () => {
+    closeStart();
+    document.getElementById('win-statue').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    heroOrb.simulateRun();
+  });
+  document.getElementById('sm-cascade').addEventListener('click', () => { closeStart(); heroCascade.fireCascade(); });
+  document.getElementById('sm-pulse').addEventListener('click', () => { closeStart(); glitchAll(); });
+  document.getElementById('sm-teal').addEventListener('click', () => { closeStart(); setSurface('teal'); });
+  document.getElementById('sm-paper').addEventListener('click', () => { closeStart(); setSurface('paper'); });
+  document.getElementById('sm-indigo').addEventListener('click', () => { closeStart(); setSurface('indigo'); });
+  document.getElementById('sm-reset').addEventListener('click', () => { closeStart(); resetWindows(); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,583 @@
+/* Paradise OS UI: the desktop the gallery and demo pages share. Fonts: IBM Plex Mono and Plus Jakarta Sans (SIL OFL, ../fonts/). */
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 500 600; font-display: swap; src: url(../fonts/plex-mono-600.woff2) format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 700; font-display: swap; src: url(../fonts/plex-mono-700.woff2) format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-weight: 400 500; font-display: swap; src: url(../fonts/jakarta-400.woff2) format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-weight: 600 700; font-display: swap; src: url(../fonts/jakarta-600.woff2) format('woff2'); }
+  :root {
+    --w95-face: #E8E3DA;
+    --w95-body: #F3EFE8;
+    --w95-hi: #FFFFFF;
+    --w95-hi2: #F4F0E8;
+    --w95-lo2: #9F97A0;
+    --w95-lo: #3D354C;
+    --gp-ink: #271E38;
+    --gp-muted: #685B7C;
+    --bar-grad: linear-gradient(90deg, #9EA0FA 0%, #F4A5DB 46%, #FFC69E 74%, #68EFEA 100%);
+    --dither: rgba(96, 72, 138, 0.30);
+    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+    --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+
+  /* Desktop wallpaper themes */
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--gp-ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-bottom: 52px; /* room for the taskbar */
+    background-color: #B4DCD9;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.24) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.24) 1px, transparent 1px),
+      radial-gradient(ellipse 80% 60% at 15% 12%, rgba(255, 214, 238, 0.42), transparent 62%),
+      linear-gradient(160deg, #A3DCD8 0%, #92CFCB 48%, #B7C7EA 100%);
+    background-size: 28px 28px, 28px 28px, 100% 100%, 100% 100%;
+    transition: background-color 0.25s ease;
+  }
+
+  body.surf-paper {
+    background-color: #F3EEE8;
+    background-image:
+      linear-gradient(to right, rgba(168, 144, 194, 0.16) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(168, 144, 194, 0.16) 1px, transparent 1px),
+      url('plates/bg-paper.webp');
+    background-size: 28px 28px, 28px 28px, 420px auto;
+    background-blend-mode: normal, normal, multiply;
+  }
+
+  body.surf-indigo {
+    --w95-face: #231D38;
+    --w95-body: #1A152C;
+    --w95-hi: #564C7A;
+    --w95-hi2: #362E54;
+    --w95-lo2: #120E20;
+    --w95-lo: #080612;
+    --gp-ink: #F2ECF9;
+    --gp-muted: rgba(242, 236, 249, 0.58);
+    --dither: rgba(6, 4, 14, 0.62);
+    background-color: #130F21;
+    background-image:
+      linear-gradient(to right, rgba(130, 118, 200, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(130, 118, 200, 0.12) 1px, transparent 1px),
+      radial-gradient(ellipse 70% 55% at 20% 15%, rgba(112, 74, 168, 0.26), transparent 62%),
+      radial-gradient(ellipse 60% 50% at 85% 85%, rgba(44, 152, 168, 0.16), transparent 65%);
+    background-size: 28px 28px, 28px 28px, 100% 100%, 100% 100%;
+  }
+
+  /* MS Paint swatch accent overrides for titlebars */
+  body.mood-navy   { --bar-grad: linear-gradient(90deg, #1E3378 0%, #5670BA 60%, #98AEEC 100%); }
+  body.mood-pink   { --bar-grad: linear-gradient(90deg, #F58AC8 0%, #FFB7D8 52%, #FFE0B8 100%); }
+  body.mood-aqua   { --bar-grad: linear-gradient(90deg, #56E8E2 0%, #A6F2EE 52%, #D4BCFA 100%); }
+  body.mood-sunset { --bar-grad: linear-gradient(90deg, #9EA0FA 0%, #F4A5DB 46%, #FFC69E 74%, #68EFEA 100%); }
+  body.mood-navy .titlebar-title { color: #FFFFFF; }
+
+  /* DREAM_CTRL.DLL -> REALITY.SYS OS-wide mode (classic raw 1995 steel-navy + wireframe teal!) */
+  body.reality-mode {
+    --w95-face: #C9C9C9;
+    --w95-body: #DCDCDC;
+    --w95-hi: #FFFFFF;
+    --w95-hi2: #E6E6E6;
+    --w95-lo2: #808080;
+    --w95-lo: #222222;
+    --gp-ink: #121212;
+    --gp-muted: #464646;
+    --bar-grad: linear-gradient(90deg, #000080 0%, #1084D0 100%);
+    background-color: #007A7A;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  body.reality-mode .titlebar-title { color: #FFFFFF; }
+  body.reality-mode .palm-wash { opacity: 0; }
+  body.surf-indigo.reality-mode {
+    --w95-face: #1E2434;
+    --w95-body: #141926;
+    --w95-hi: #4E5E7C;
+    --w95-hi2: #2E394E;
+    --gp-ink: #E8EEF8;
+    --gp-muted: rgba(220, 232, 248, 0.62);
+    background-color: #0B1520;
+  }
+
+  /* Sympathetic desktop warning aura when HELIOS_AGENT.EXE enters ERROR state */
+  body.agent-alert .menubar {
+    box-shadow: inset 0 -2px 0 rgba(255, 68, 136, 0.65), inset 0 1px 0 var(--w95-hi);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Subtle sunlit palm shadow wash */
+  .palm-wash {
+    position: fixed;
+    top: -40px; left: -50px; width: 440px;
+    pointer-events: none; z-index: 0;
+    opacity: 0.085; filter: blur(5px); fill: #3E335C;
+    transform: rotate(12deg);
+  }
+  body.surf-indigo .palm-wash { opacity: 0; }
+
+  /* =========================================================================
+     CLASSIC OS MENU BAR (Top Edge)
+     ========================================================================= */
+  .menubar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    height: 30px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--w95-face);
+    border-bottom: 2px solid var(--w95-lo);
+    box-shadow: inset 0 -1px 0 var(--w95-lo2), inset 0 1px 0 var(--w95-hi);
+    font-family: var(--mono);
+    font-size: 11px;
+    user-select: none;
+  }
+  .menu-left, .menu-right { display: flex; align-items: center; gap: 4px; }
+  .menu-brand {
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 2px 8px 2px 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .menu-item {
+    appearance: none;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--gp-ink);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    cursor: pointer;
+  }
+  .menu-item:hover {
+    background: rgba(158, 160, 250, 0.25);
+    border-color: var(--w95-hi) var(--w95-lo2) var(--w95-lo2) var(--w95-hi);
+  }
+  .menu-item.active {
+    background: var(--w95-body);
+    border-color: var(--w95-lo2) var(--w95-hi) var(--w95-hi) var(--w95-lo2);
+  }
+  @media (max-width: 680px) { .hide-sm { display: none; } }
+
+  /* =========================================================================
+     95-ERA BEVELED WINDOW CHROME + EXTERNAL HALFTONE SHADOW
+     ========================================================================= */
+  .desktop {
+    position: relative;
+    z-index: 2;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 26px 24px 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .win-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+    align-items: stretch;
+  }
+  @media (max-width: 900px) {
+    .win-row { grid-template-columns: 1fr; }
+  }
+
+  .win95 {
+    position: relative;
+    background: var(--w95-face);
+    border: 2px solid;
+    border-color: var(--w95-hi) var(--w95-lo) var(--w95-lo) var(--w95-hi);
+    box-shadow:
+      inset 1px 1px 0 var(--w95-hi2),
+      inset -1px -1px 0 var(--w95-lo2);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.14s ease;
+  }
+  .win95 > * { position: relative; z-index: 2; }
+  .win95::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--w95-face);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .win95::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    transform: translate(9px, 9px);
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(var(--dither) 1.15px, transparent 1.15px);
+    background-size: 4px 4px;
+  }
+  .win95.dragging { z-index: 25; transition: none; }
+  .win95.shake { animation: winBlink 0.28s steps(3); }
+  @keyframes winBlink {
+    0% { transform: translate(0, 0) scaleY(1); }
+    35% { transform: translate(5px, -2px) scaleY(0.96); }
+    70% { transform: translate(-4px, 1px) scaleY(1.01); }
+    100% { transform: translate(0, 0) scaleY(1); }
+  }
+
+  .titlebar {
+    height: 28px;
+    margin: 3px 3px 0;
+    padding: 0 5px 0 9px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--bar-grad);
+    cursor: grab;
+    user-select: none;
+  }
+  .titlebar:active { cursor: grabbing; }
+  .titlebar-left { display: flex; align-items: center; gap: 7px; min-width: 0; }
+  .win-ico {
+    width: 14px; height: 14px; flex: none;
+    border: 1px solid rgba(38, 28, 56, 0.45);
+    background: linear-gradient(135deg, #FFFFFF 0%, #6EF6F0 55%, #FF8ED2 100%);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.8);
+  }
+  .titlebar-title {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #241A36;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .win-pips { display: flex; gap: 3px; flex: none; }
+  .win-pip {
+    appearance: none;
+    width: 18px; height: 17px;
+    display: grid; place-items: center;
+    font-family: var(--mono); font-size: 10px; font-weight: 700; line-height: 1;
+    background: var(--w95-face);
+    color: var(--gp-ink);
+    border: 1.5px solid;
+    border-color: var(--w95-hi) var(--w95-lo) var(--w95-lo) var(--w95-hi);
+    cursor: pointer;
+  }
+  .win-pip:active { border-color: var(--w95-lo) var(--w95-hi) var(--w95-hi) var(--w95-lo); transform: translate(1px, 1px); }
+
+  /* Subtle sub-toolbar / recessed stage body */
+  .win-toolbar {
+    margin: 4px 6px 0;
+    padding: 5px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid var(--w95-lo2);
+    box-shadow: 0 1px 0 var(--w95-hi);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--gp-muted);
+  }
+  .w95-tabs { display: inline-flex; gap: 4px; }
+  .w95-btn {
+    appearance: none;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: var(--w95-face);
+    color: var(--gp-ink);
+    border: 2px solid;
+    border-color: var(--w95-hi) var(--w95-lo) var(--w95-lo) var(--w95-hi);
+    cursor: pointer;
+  }
+  .w95-btn:hover { filter: brightness(1.03); }
+  .w95-btn:active, .w95-btn.active {
+    border-color: var(--w95-lo) var(--w95-hi) var(--w95-hi) var(--w95-lo);
+    background: var(--w95-body);
+    color: var(--gp-ink);
+  }
+  .w95-btn.active {
+    box-shadow: inset 0 0 0 1px rgba(60, 235, 226, 0.45);
+  }
+  .w95-btn.compact {
+    padding: 3px 7px;
+    font-size: 9.5px;
+    letter-spacing: 0.04em;
+  }
+  .w95-btn.sim-btn {
+    background: linear-gradient(90deg, rgba(104, 239, 234, 0.34) 0%, rgba(244, 165, 219, 0.34) 100%), var(--w95-face);
+    font-weight: 700;
+  }
+  .w95-btn.sim-btn.running {
+    border-color: var(--w95-lo) var(--w95-hi) var(--w95-hi) var(--w95-lo);
+    background: linear-gradient(90deg, rgba(60, 248, 240, 0.48) 0%, rgba(255, 118, 206, 0.44) 100%), var(--w95-body);
+  }
+
+  .win-well {
+    flex: 1;
+    margin: 8px 8px 6px;
+    padding: 24px 20px 22px;
+    background: var(--w95-body);
+    border: 2px solid;
+    border-color: var(--w95-lo2) var(--w95-hi) var(--w95-hi) var(--w95-lo2);
+    box-shadow: inset 1px 1px 0 rgba(30, 20, 48, 0.14);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    position: relative;
+  }
+
+  /* Subtle bottom status strip inside each window */
+  .win-status {
+    margin: 0 8px 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--gp-muted);
+  }
+  .status-cell {
+    padding: 3px 8px;
+    border: 1.5px solid;
+    border-color: var(--w95-lo2) var(--w95-hi) var(--w95-hi) var(--w95-lo2);
+    background: var(--w95-face);
+    white-space: nowrap;
+  }
+  .status-cell.grow { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+  .status-cell.fast { color: #0B9FA8; font-weight: 700; text-shadow: -1.5px 0 rgba(255, 80, 195, 0.55), 1.5px 0 rgba(48, 245, 240, 0.7); }
+  body.surf-indigo .status-cell.fast { color: #68FAF5; }
+
+  /* MS Paint pastel swatch row inside POOL_FLOOD.EXE */
+  .paint-strip {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .swatch {
+    width: 16px; height: 16px;
+    border: 1.5px solid;
+    border-color: var(--w95-lo) var(--w95-hi) var(--w95-hi) var(--w95-lo);
+    cursor: pointer;
+  }
+  .swatch.active { outline: 2px solid var(--gp-ink); outline-offset: 1px; }
+
+  /* Pool slider centering */
+  .pool-wrap { display: flex; justify-content: center; width: 100%; }
+  .crt-scale, .eq-scale { display: flex; justify-content: center; width: 100%; }
+  @media (max-width: 600px) {
+    .crt-scale { transform: scale(0.72); transform-origin: center; }
+    .eq-scale { transform: scale(0.76); transform-origin: center; }
+  }
+
+  /* Frozen drag ghosts stamped on desktop when dragging any window titlebar! */
+  .drag-ghost {
+    position: fixed;
+    pointer-events: none;
+    z-index: 20;
+    background: var(--w95-face);
+    border: 2px solid;
+    border-color: var(--w95-hi) var(--w95-lo) var(--w95-lo) var(--w95-hi);
+    opacity: 0.72;
+    transition: opacity 0.52s ease;
+  }
+  .drag-ghost .gtb {
+    height: 24px;
+    margin: 3px;
+    background: var(--bar-grad);
+    opacity: 0.85;
+  }
+
+  /* =========================================================================
+     95-ERA TASKBAR & START MENU (Bottom Edge)
+     ========================================================================= */
+  .taskbar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    height: 40px;
+    padding: 4px 8px;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--w95-face);
+    border-top: 2px solid var(--w95-hi);
+    box-shadow: inset 0 1px 0 var(--w95-hi2);
+    font-family: var(--mono);
+  }
+  .tb-left { display: flex; align-items: center; gap: 6px; min-width: 0; overflow: hidden; }
+  .start-btn {
+    appearance: none;
+    height: 30px;
+    padding: 0 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    background: var(--w95-face);
+    color: var(--gp-ink);
+    border: 2px solid;
+    border-color: var(--w95-hi) var(--w95-lo) var(--w95-lo) var(--w95-hi);
+    cursor: pointer;
+    flex: none;
+  }
+  .start-btn:active, .start-btn.open {
+    border-color: var(--w95-lo) var(--w95-hi) var(--w95-hi) var(--w95-lo);
+    background: var(--w95-body);
+  }
+  .start-flag {
+    width: 14px; height: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px;
+  }
+  .start-flag i { display: block; }
+  .tb-div {
+    width: 2px; height: 24px;
+    background: var(--w95-lo2);
+    border-right: 1px solid var(--w95-hi);
+    margin: 0 2px;
+    flex: none;
+  }
+  .task-tab {
+    appearance: none;
+    height: 28px;
+    padding: 0 10px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    background: var(--w95-face);
+    color: var(--gp-ink);
+    border: 2px solid;
+    border-color: var(--w95-hi) var(--w95-lo) var(--w95-lo) var(--w95-hi);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .task-tab.active {
+    border-color: var(--w95-lo) var(--w95-hi) var(--w95-hi) var(--w95-lo);
+    background: var(--w95-body);
+  }
+  .tray {
+    height: 28px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1.5px solid;
+    border-color: var(--w95-lo2) var(--w95-hi) var(--w95-hi) var(--w95-lo2);
+    background: var(--w95-body);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gp-ink);
+    flex: none;
+  }
+  .tray-btn {
+    appearance: none; border: none; background: transparent; color: inherit;
+    font-family: var(--mono); font-size: 11px; font-weight: 700; cursor: pointer;
+  }
+
+  /* Pop-up Start Menu */
+  .start-menu {
+    position: fixed;
+    left: 8px;
+    bottom: 42px;
+    width: 236px;
+    z-index: 65;
+    display: none;
+    grid-template-columns: 28px 1fr;
+    background: var(--w95-face);
+    border: 2px solid;
+    border-color: var(--w95-hi) var(--w95-lo) var(--w95-lo) var(--w95-hi);
+    box-shadow: 6px 6px 0 rgba(55, 38, 86, 0.28);
+  }
+  .start-menu.open { display: grid; }
+  .start-spine {
+    background: linear-gradient(180deg, #68EFEA 0%, #F4A5DB 52%, #7D7BF8 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 10px;
+  }
+  .start-spine span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: #241A36;
+  }
+  .start-items { padding: 4px; display: flex; flex-direction: column; gap: 2px; }
+  .start-item {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--gp-ink);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-align: left;
+    padding: 8px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .start-item:hover {
+    background: #2C3D8F;
+    color: #FFFFFF;
+  }
+  .start-sep { height: 1px; background: var(--w95-lo2); border-bottom: 1px solid var(--w95-hi); margin: 3px 2px; }
+
+  /* Floating System Alert Toast ("Cannot close paradise") */
+  .sys-toast {
+    position: fixed;
+    right: 22px;
+    bottom: 54px;
+    width: 248px;
+    z-index: 70;
+    transform-origin: center;
+    transition: opacity 0.2s ease, transform 0.24s cubic-bezier(.22, 1, .36, 1);
+  }
+  .sys-toast.hidden { opacity: 0; pointer-events: none; transform: scaleY(0.04) scaleX(0.18); }
+  .toast-body {
+    padding: 14px 14px 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 12.5px;
+    font-weight: 500;
+  }
+
+/* the gallery's per-window actions and the demo pages' heading (added for the package) */
+.win-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 6px 6px 0; }
+.win-acts-said { margin-left: 4px; font: 600 10px/1.2 var(--mono); }
+a.w95-btn { display: inline-flex; align-items: center; color: inherit; text-decoration: none; }
+h1.titlebar-title { margin: 0; font-size: inherit; font-weight: inherit; }
+/* windows never grow past the screen; a wide control is zoomed to fit instead (gallery/prompts.js, the demo pages) */
+html { overflow-x: clip; }
+.win95 { min-width: 0; max-width: 100%; }
+.win-well { min-width: 0; max-width: 100%; }
+.win-toolbar, .win-toolbar > div { flex-wrap: wrap; }

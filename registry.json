@@ -1,0 +1,161 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "paradise-os-ui",
+  "homepage": "https://paradise-os-ui.vercel.app",
+  "items": [
+    {
+      "name": "cd-dial",
+      "type": "registry:file",
+      "title": "Paradise OS CD-ROM jukebox",
+      "description": "A holographic CD on a marble platter that is a five-track music player. Turn the disc and it clicks from track to track, the laser arm seeks across the grooves and the song changes; click the hub to play or pause. One file of about 345 KB, no dependencies, defines <paradise-cd-dial>.",
+      "author": "Justin Finkelman <https://github.com/finktheartist>",
+      "categories": [
+        "dial",
+        "music",
+        "player",
+        "select",
+        "canvas",
+        "animation"
+      ],
+      "files": [
+        {
+          "path": "cd-dial/cd-dial.js",
+          "type": "registry:file",
+          "target": "~/public/paradise-os-ui/cd-dial.js"
+        }
+      ],
+      "docs": "Paradise OS CD-ROM jukebox is a plain script that registers a custom element. Load /paradise-os-ui/cd-dial.js with a script tag (not a module), then use <paradise-cd-dial tracks=\"audio/\"></paradise-cd-dial>. Read el.track (0 to 4) and el.playing; it fires input while it turns, change when it settles and track-change when the track changes. Give it tracks=\"folder/\" holding trk-01.mp3 to trk-05.mp3 for real songs; without that each track is a beat synthesized on the spot. Draws at 268 × 244 pixels on a light page. More: https://paradise-os-ui.vercel.app"
+    },
+    {
+      "name": "eq",
+      "type": "registry:file",
+      "title": "Paradise OS Equalizer",
+      "description": "A seven-band equalizer: seven slots in a glazed pink ceramic rack, each filled with pool water and topped with a chrome pearl. Swipe across the slots to sculpt the curve; while music plays the water dances to it and the pearls hold the peaks. One file of about 423 KB, no dependencies, defines <paradise-eq>.",
+      "author": "Justin Finkelman <https://github.com/finktheartist>",
+      "categories": [
+        "equalizer",
+        "audio",
+        "slider",
+        "canvas",
+        "animation"
+      ],
+      "files": [
+        {
+          "path": "eq/eq.js",
+          "type": "registry:file",
+          "target": "~/public/paradise-os-ui/eq.js"
+        }
+      ],
+      "docs": "Paradise OS Equalizer is a plain script that registers a custom element. Load /paradise-os-ui/eq.js with a script tag (not a module), then use <paradise-eq preset=\"mallsoft\"></paradise-eq>. Read el.getValues() (seven whole numbers from 0 to 100); it fires input while you paint and change when you let go. preset picks a starting curve. Draws at 444 × 236 pixels on a light page. More: https://paradise-os-ui.vercel.app"
+    },
+    {
+      "name": "slider",
+      "type": "registry:file",
+      "title": "Paradise OS Pool slider",
+      "description": "A range slider drawn as a pink-tiled pool with a checkerboard floor. The value is how full it is: drag the chrome ball and the water floods after it in real waves; flick it and the water slops; over 85% it overflows. One file of about 554 KB, no dependencies, defines <paradise-pool-slider>.",
+      "author": "Justin Finkelman <https://github.com/finktheartist>",
+      "categories": [
+        "slider",
+        "range",
+        "water",
+        "canvas",
+        "animation"
+      ],
+      "files": [
+        {
+          "path": "slider/slider.js",
+          "type": "registry:file",
+          "target": "~/public/paradise-os-ui/slider.js"
+        }
+      ],
+      "docs": "Paradise OS Pool slider is a plain script that registers a custom element. Load /paradise-os-ui/slider.js with a script tag (not a module), then use <paradise-pool-slider value=\"62\"></paradise-pool-slider>. Read el.value (0 to 100); it fires input while it moves and change when it is let go. With a name it is sent with its form. Draws at 560 × 225 pixels on a light page. More: https://paradise-os-ui.vercel.app"
+    },
+    {
+      "name": "toggle",
+      "type": "registry:file",
+      "title": "Paradise OS Dream toggle",
+      "description": "A switch in a little 95-era dialog window. On, the track is pool water and the label says DREAM ON; drag the knob and water leaks across before it snaps. Off, every Paradise control on the page drops to grey wireframe reality. One file of about 298 KB, no dependencies, defines <paradise-toggle>.",
+      "author": "Justin Finkelman <https://github.com/finktheartist>",
+      "categories": [
+        "toggle",
+        "switch",
+        "checkbox",
+        "canvas",
+        "animation"
+      ],
+      "files": [
+        {
+          "path": "toggle/toggle.js",
+          "type": "registry:file",
+          "target": "~/public/paradise-os-ui/toggle.js"
+        }
+      ],
+      "docs": "Paradise OS Dream toggle is a plain script that registers a custom element. Load /paradise-os-ui/toggle.js with a script tag (not a module), then use <paradise-toggle checked></paradise-toggle>. Read el.checked; it fires change. With a name it is sent with its form when on. mode=\"busy\" or \"locked\" stops it. Draws at 244 × 98 pixels on a light page. More: https://paradise-os-ui.vercel.app"
+    },
+    {
+      "name": "button",
+      "type": "registry:file",
+      "title": "Paradise OS Cascade button",
+      "description": "A button drawn as a 95-era error dialog. Click it and a few copies of the dialog cascade down and bounce like dealt cards; hold it and a wireframe hypercube unfolds inside, and letting go fires a cascade as big as the charge. One file of about 149 KB, no dependencies, defines <paradise-cascade-button>.",
+      "author": "Justin Finkelman <https://github.com/finktheartist>",
+      "categories": [
+        "button",
+        "hold",
+        "canvas",
+        "animation"
+      ],
+      "files": [
+        {
+          "path": "button/button.js",
+          "type": "registry:file",
+          "target": "~/public/paradise-os-ui/button.js"
+        }
+      ],
+      "docs": "Paradise OS Cascade button is a plain script that registers a custom element. Load /paradise-os-ui/button.js with a script tag (not a module), then use <paradise-cascade-button label=\"Still dreaming?\"></paradise-cascade-button>. Listen for action (detail.combo, detail.mega); charge fires while it is held, with detail.charge from 0 to 1. Draws at 248 × 110 pixels on a light page. More: https://paradise-os-ui.vercel.app"
+    },
+    {
+      "name": "tabs",
+      "type": "registry:file",
+      "title": "Paradise OS CRT tabs",
+      "description": "Three little beige CRT monitors hanging at different heights. Click one and it powers on to its channel (a pool, a sunset, an aquarium) while the others collapse to a dot; double-click to degauss it. One file of about 467 KB, no dependencies, defines <paradise-crt-tabs>.",
+      "author": "Justin Finkelman <https://github.com/finktheartist>",
+      "categories": [
+        "tabs",
+        "select",
+        "canvas",
+        "animation"
+      ],
+      "files": [
+        {
+          "path": "tabs/tabs.js",
+          "type": "registry:file",
+          "target": "~/public/paradise-os-ui/tabs.js"
+        }
+      ],
+      "docs": "Paradise OS CRT tabs is a plain script that registers a custom element. Load /paradise-os-ui/tabs.js with a script tag (not a module), then use <paradise-crt-tabs value=\"1\"></paradise-crt-tabs>. Read el.value (0, 1 or 2); it fires change with detail.channel. select(i) switches from code; degauss() wobbles the picture. Draws at 499 × 266 pixels on a light page. More: https://paradise-os-ui.vercel.app"
+    },
+    {
+      "name": "agent-status",
+      "type": "registry:file",
+      "title": "Paradise OS Statue agent status",
+      "description": "A status indicator for an AI agent: a marble bust floating over a checkerboard plinth, drawn in 3D. Each state looks different: thinking splits it into turning slabs, searching scans it with a laser, writing sends glyphs up, error cracks it red, done slams it into a pool of light. One file of about 397 KB, no dependencies, defines <paradise-statue>.",
+      "author": "Justin Finkelman <https://github.com/finktheartist>",
+      "categories": [
+        "status",
+        "ai",
+        "agent",
+        "progress",
+        "webgl",
+        "animation"
+      ],
+      "files": [
+        {
+          "path": "agent-status/agent-status.js",
+          "type": "registry:file",
+          "target": "~/public/paradise-os-ui/agent-status.js"
+        }
+      ],
+      "docs": "Paradise OS Statue agent status is a plain script that registers a custom element. Load /paradise-os-ui/agent-status.js with a script tag (not a module), then use <paradise-statue state=\"thinking\"></paradise-statue>. Set el.state to idle, thinking, searching, tool, writing, error or done; el.progress (0 to 1) draws a ring. pulse() fires one burst. Draws at 240 × 256 pixels on a light page. More: https://paradise-os-ui.vercel.app"
+    }
+  ]
+}
